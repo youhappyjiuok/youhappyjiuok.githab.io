@@ -71,6 +71,212 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-三层交换" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/10/09/%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2/" class="article-date">
+  <time class="dt-published" datetime="2021-10-09T09:20:17.811Z" itemprop="datePublished">2021-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><img src="https://i.loli.net/2021/10/09/2nNPSGW59YJrk6M.png" alt="image-20211009171800707"></p>
+<h4 id="三层交换"><a href="#三层交换" class="headerlink" title="三层交换"></a>三层交换</h4><ol>
+<li><p>LSW1</p>
+<ol>
+<li><p>划分vlan</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sysname LSW1</span><br><span class="line">vlan batch 20 30 40</span><br></pre></td></tr></table></figure></li>
+<li><p>确认接入类型</p>
+<ol>
+<li><p>接口加入vlan中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/1</span><br><span class="line">port link-type access</span><br><span class="line">p d v 20</span><br><span class="line">un sh</span><br><span class="line">q</span><br></pre></td></tr></table></figure></li>
+<li><p>查看当前配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis th</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>划分虚接口</p>
+<ol>
+<li><p>配置网关地址LSW1下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int Vlanif 20</span><br><span class="line">ip address 20.0.0.1 24</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>pc</p>
+<ol>
+<li>对应access网段中ip,掩码,网关</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/09/%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2/" data-id="ckujl7hm70001zsds0peg0os0" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-入门实验-弹性容灾" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/10/09/%E5%85%A5%E9%97%A8%E5%AE%9E%E9%AA%8C-%E5%BC%B9%E6%80%A7%E5%AE%B9%E7%81%BE/" class="article-date">
+  <time class="dt-published" datetime="2021-10-09T09:20:17.809Z" itemprop="datePublished">2021-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="模拟"><a href="#模拟" class="headerlink" title="模拟"></a>模拟</h4><ol>
+<li><p>设置顺序</p>
+<ol>
+<li>确定设备</li>
+<li>确定节点</li>
+<li>初始化节点，配置网关ip</li>
+<li>确定划分方法（pc设备网关，其他网关）</li>
+<li>测试ip 不通再看tracert</li>
+</ol>
+</li>
+<li><p>优先级</p>
+<ul>
+<li><p>默认优先级为60</p>
+</li>
+<li><p>修改优先级，数越大优先级越小</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip route-static 目标网段  矢量下一跳ip preference 70</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/09/%E5%85%A5%E9%97%A8%E5%AE%9E%E9%AA%8C-%E5%BC%B9%E6%80%A7%E5%AE%B9%E7%81%BE/" data-id="ckujl7hme0003zsdsbfow0zll" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-配置epel源，yum安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/10/09/%E9%85%8D%E7%BD%AEepel%E6%BA%90%EF%BC%8Cyum%E5%AE%89%E8%A3%85/" class="article-date">
+  <time class="dt-published" datetime="2021-10-09T09:20:17.808Z" itemprop="datePublished">2021-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/09/%E9%85%8D%E7%BD%AEepel%E6%BA%90%EF%BC%8Cyum%E5%AE%89%E8%A3%85/" data-id="ckujl7hlv0000zsds59vy0g48" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-单臂路由" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/10/09/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1/" class="article-date">
+  <time class="dt-published" datetime="2021-10-09T09:20:17.806Z" itemprop="datePublished">2021-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><img src="https://i.loli.net/2021/10/09/3XDbM71nr2OcAwo.png" alt="image-20211008175429072"></p>
+<ol>
+<li><p>配置交换机LSW1</p>
+<ol>
+<li><p>划分access</p>
+<ol>
+<li><p>允许划分</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">undo info-center enable</span><br></pre></td></tr></table></figure></li>
+<li><p>增加vlan</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vlan batch <span class="number">18</span> <span class="number">20</span></span><br></pre></td></tr></table></figure></li>
+<li><p>进入接口，定义类型，节点归属</p>
+</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> e0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">port link-type access</span><br><span class="line">port <span class="keyword">default</span> vlan <span class="number">18</span></span><br><span class="line">(可简写为p d v <span class="number">18</span>)</span><br><span class="line">un sh</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>查看节点状态</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis th</span><br></pre></td></tr></table></figure></li>
+<li><p>划分trunk</p>
+<ol>
+<li>进入接口，定义类型，节点归属</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">port link-type trunk</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>控制放行vlan</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">port trunk allow-pass vlan all</span><br></pre></td></tr></table></figure></li>
+<li><p>配置路由器AR1</p>
+<ol>
+<li>进入配置为子接口，定义网关ip(其他接口同理)</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> g0/<span class="number">0</span>/<span class="number">0.18</span></span><br><span class="line">dot1q termination vid <span class="number">18</span></span><br><span class="line">ip address <span class="number">10.7</span><span class="number">.2</span><span class="number">.1</span> <span class="number">24</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>允许开启arp广播</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arp broadcast enable</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>打开</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">un sh</span><br><span class="line">q</span><br><span class="line">save</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/09/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1/" data-id="ckujl7hmd0002zsdsfg6e69lo" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-sed" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/10/09/sed/" class="article-date">
@@ -315,19 +521,23 @@
       <ul>
         
           <li>
+            <a href="/2021/10/09/%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/09/%E5%85%A5%E9%97%A8%E5%AE%9E%E9%AA%8C-%E5%BC%B9%E6%80%A7%E5%AE%B9%E7%81%BE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/09/%E9%85%8D%E7%BD%AEepel%E6%BA%90%EF%BC%8Cyum%E5%AE%89%E8%A3%85/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/09/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2021/10/09/sed/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/09/awk/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/09/%E4%B8%89%E5%89%91%E5%AE%A2-%E4%BF%AE%E6%94%B9firewall%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97/">三剑客-修改firewall根据日志</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/09/first-hello-word/">first hello word</a>
           </li>
         
       </ul>
