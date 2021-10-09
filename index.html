@@ -71,75 +71,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-三剑客-修改firewall根据日志" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/10/09/%E4%B8%89%E5%89%91%E5%AE%A2-%E4%BF%AE%E6%94%B9firewall%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97/" class="article-date">
-  <time class="dt-published" datetime="2021-10-09T07:51:36.900Z" itemprop="datePublished">2021-10-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="构想"><a href="#构想" class="headerlink" title="构想"></a>构想</h4><ul>
-<li><input disabled="" type="checkbox"> <del>firewalld实现黑白名单</del></li>
-<li><input checked="" disabled="" type="checkbox"> 从防火墙读取日志文件剔除白名单ip,再加脚本实现增删改查</li>
-</ul>
-<ol>
-<li>日志选定次数出现多的ip，判断不再白名单就加到黑名单</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">log_path=/usr/local/nginx/logs</span><br><span class="line">date=`date -d &quot;1 min ago&quot; +%Y%m%d-%H:%M:%S`</span><br><span class="line">nginxpid=`cat $&#123;log_path&#125;/nginx.pid`</span><br><span class="line">bmd=&#x27;39.96.88.49|47.94.44.148&#x27;</span><br><span class="line">cd $&#123;log_path&#125;</span><br><span class="line">array=($(cat access.log |grep -Ev $bmd| awk &#x27;&#123;print $1&#125;&#x27;|sort|uniq -c | sort -rn | awk &#x27;&#123;if($1&gt;1500) print $2&#125;&#x27;))</span><br><span class="line">wait</span><br><span class="line">for each in $&#123;array[@]&#125;</span><br><span class="line">do</span><br><span class="line">echo $each</span><br><span class="line">firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$each&quot; reject&quot;;</span><br><span class="line">done</span><br><span class="line">firewall-cmd --reload;</span><br><span class="line"></span><br><span class="line">cd $&#123;log_path&#125;</span><br><span class="line">array1=($(cat soso.access.log |grep -Ev $bmd| awk &#x27;&#123;print $1&#125;&#x27;|sort|uniq -c | sort -rn | awk &#x27;&#123;if($1&gt;1000) print $2&#125;&#x27;))</span><br><span class="line">wait</span><br><span class="line">for each in $&#123;array1[@]&#125;</span><br><span class="line">do</span><br><span class="line">echo $each</span><br><span class="line">firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$each&quot; reject&quot;;</span><br><span class="line">done</span><br><span class="line">firewall-cmd --reload;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>增加sed修改文件，实现增减黑白名单</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">source /xshell/nginx_cutaccesslog.sh</span><br><span class="line">echo -e &quot;输入动作:移除黑名单(remove bl);\n或输入:添加黑名单(add bl);\n或输入:添加白名单(add wl)\n或输入:移除白&gt;名单(remove wl)&quot;</span><br><span class="line">read xtext</span><br><span class="line">echo -e &quot;输入操作ip:&quot;</span><br><span class="line">read xip</span><br><span class="line">if [ &quot;$xtext&quot; = &#x27;remove bl&#x27; ]</span><br><span class="line">    then</span><br><span class="line">        firewall-cmd --permanent --remove-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$xip&quot; reject&quot; &amp;&amp; firewall-cmd --reload</span><br><span class="line">    elif [ &quot;$xtext&quot; = &#x27;add bl&#x27; ]</span><br><span class="line">        then</span><br><span class="line">        firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$xip&quot; reject&quot;  &amp;&amp; firewall-cmd --reload</span><br><span class="line">    elif [ &quot;$xtext&quot; = &#x27;add wl&#x27; ]</span><br><span class="line">        then</span><br><span class="line">        grep $&#123;xip&#125; /woshibenji/test-nginx &amp;&amp; echo &quot;$&#123;xip&#125;已在白名单&quot; || sed -i &quot;/bmd=/ s/$&#123;bmd&#125;/$&#123;bmd&#125;|$&#123;xip&#125;/&quot; /xshell/nginx_cutaccesslog.sh</span><br><span class="line">    elif [ &quot;$xtext&quot; = &#x27;remove wl&#x27; ]</span><br><span class="line">        then</span><br><span class="line">        sed -i &quot;/bmd=/ s/|\?$&#123;xip&#125;//g&quot; /xshell/nginx_cutaccesslog.sh</span><br><span class="line">    else</span><br><span class="line">       echo -e &quot;是否读取移除黑名单文件(yes/no)\nPS:适用操作批量ip&quot;</span><br><span class="line">    read xif</span><br><span class="line">   if [ $xif = &#x27;yes&#x27; ]</span><br><span class="line">       then</span><br><span class="line">           for line in `cat /opt/firewall.allow`</span><br><span class="line">           do</span><br><span class="line">               firewall-cmd --permanent --remove-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$line&quot; reject&quot; &amp;&amp; firewall-cmd --reload</span><br><span class="line">           done</span><br><span class="line">   fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/09/%E4%B8%89%E5%89%91%E5%AE%A2-%E4%BF%AE%E6%94%B9firewall%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97/" data-id="ckujijgrx0004dsds6dak25pj" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-配置epel源，yum安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/10/09/%E9%85%8D%E7%BD%AEepel%E6%BA%90%EF%BC%8Cyum%E5%AE%89%E8%A3%85/" class="article-date">
-  <time class="dt-published" datetime="2021-10-09T07:51:36.898Z" itemprop="datePublished">2021-10-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/09/%E9%85%8D%E7%BD%AEepel%E6%BA%90%EF%BC%8Cyum%E5%AE%89%E8%A3%85/" data-id="ckujijgrh0000dsds2n3v6aw7" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-sed" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/10/09/sed/" class="article-date">
@@ -263,6 +194,57 @@
 
 
   
+    <article id="post-三剑客-修改firewall根据日志" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/10/09/%E4%B8%89%E5%89%91%E5%AE%A2-%E4%BF%AE%E6%94%B9firewall%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97/" class="article-date">
+  <time class="dt-published" datetime="2021-10-09T06:25:18.000Z" itemprop="datePublished">2021-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/10/09/%E4%B8%89%E5%89%91%E5%AE%A2-%E4%BF%AE%E6%94%B9firewall%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97/">三剑客-修改firewall根据日志</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="构想"><a href="#构想" class="headerlink" title="构想"></a>构想</h4><ul>
+<li><input disabled="" type="checkbox"> <del>firewalld实现黑白名单</del></li>
+<li><input checked="" disabled="" type="checkbox"> 从防火墙读取日志文件剔除白名单ip,再加脚本实现增删改查</li>
+</ul>
+<ol>
+<li>日志选定次数出现多的ip，判断不再白名单就加到黑名单</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">log_path=/usr/local/nginx/logs</span><br><span class="line">date=`date -d &quot;1 min ago&quot; +%Y%m%d-%H:%M:%S`</span><br><span class="line">nginxpid=`cat $&#123;log_path&#125;/nginx.pid`</span><br><span class="line">bmd=&#x27;39.96.88.49|47.94.44.148&#x27;</span><br><span class="line">cd $&#123;log_path&#125;</span><br><span class="line">array=($(cat access.log |grep -Ev $bmd| awk &#x27;&#123;print $1&#125;&#x27;|sort|uniq -c | sort -rn | awk &#x27;&#123;if($1&gt;1500) print $2&#125;&#x27;))</span><br><span class="line">wait</span><br><span class="line">for each in $&#123;array[@]&#125;</span><br><span class="line">do</span><br><span class="line">echo $each</span><br><span class="line">firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$each&quot; reject&quot;;</span><br><span class="line">done</span><br><span class="line">firewall-cmd --reload;</span><br><span class="line"></span><br><span class="line">cd $&#123;log_path&#125;</span><br><span class="line">array1=($(cat soso.access.log |grep -Ev $bmd| awk &#x27;&#123;print $1&#125;&#x27;|sort|uniq -c | sort -rn | awk &#x27;&#123;if($1&gt;1000) print $2&#125;&#x27;))</span><br><span class="line">wait</span><br><span class="line">for each in $&#123;array1[@]&#125;</span><br><span class="line">do</span><br><span class="line">echo $each</span><br><span class="line">firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$each&quot; reject&quot;;</span><br><span class="line">done</span><br><span class="line">firewall-cmd --reload;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>增加sed修改文件，实现增减黑白名单</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">source /xshell/nginx_cutaccesslog.sh</span><br><span class="line">echo -e &quot;输入动作:移除黑名单(remove bl);\n或输入:添加黑名单(add bl);\n或输入:添加白名单(add wl)\n或输入:移除白&gt;名单(remove wl)&quot;</span><br><span class="line">read xtext</span><br><span class="line">echo -e &quot;输入操作ip:&quot;</span><br><span class="line">read xip</span><br><span class="line">if [ &quot;$xtext&quot; = &#x27;remove bl&#x27; ]</span><br><span class="line">    then</span><br><span class="line">        firewall-cmd --permanent --remove-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$xip&quot; reject&quot; &amp;&amp; firewall-cmd --reload</span><br><span class="line">    elif [ &quot;$xtext&quot; = &#x27;add bl&#x27; ]</span><br><span class="line">        then</span><br><span class="line">        firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$xip&quot; reject&quot;  &amp;&amp; firewall-cmd --reload</span><br><span class="line">    elif [ &quot;$xtext&quot; = &#x27;add wl&#x27; ]</span><br><span class="line">        then</span><br><span class="line">        grep $&#123;xip&#125; /woshibenji/test-nginx &amp;&amp; echo &quot;$&#123;xip&#125;已在白名单&quot; || sed -i &quot;/bmd=/ s/$&#123;bmd&#125;/$&#123;bmd&#125;|$&#123;xip&#125;/&quot; /xshell/nginx_cutaccesslog.sh</span><br><span class="line">    elif [ &quot;$xtext&quot; = &#x27;remove wl&#x27; ]</span><br><span class="line">        then</span><br><span class="line">        sed -i &quot;/bmd=/ s/|\?$&#123;xip&#125;//g&quot; /xshell/nginx_cutaccesslog.sh</span><br><span class="line">    else</span><br><span class="line">       echo -e &quot;是否读取移除黑名单文件(yes/no)\nPS:适用操作批量ip&quot;</span><br><span class="line">    read xif</span><br><span class="line">   if [ $xif = &#x27;yes&#x27; ]</span><br><span class="line">       then</span><br><span class="line">           for line in `cat /opt/firewall.allow`</span><br><span class="line">           do</span><br><span class="line">               firewall-cmd --permanent --remove-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$line&quot; reject&quot; &amp;&amp; firewall-cmd --reload</span><br><span class="line">           done</span><br><span class="line">   fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/09/%E4%B8%89%E5%89%91%E5%AE%A2-%E4%BF%AE%E6%94%B9firewall%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97/" data-id="ckujijgrx0004dsds6dak25pj" data-title="三剑客-修改firewall根据日志" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-first-hello-word" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/10/09/first-hello-word/" class="article-date">
@@ -333,19 +315,15 @@
       <ul>
         
           <li>
-            <a href="/2021/10/09/%E4%B8%89%E5%89%91%E5%AE%A2-%E4%BF%AE%E6%94%B9firewall%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/09/%E9%85%8D%E7%BD%AEepel%E6%BA%90%EF%BC%8Cyum%E5%AE%89%E8%A3%85/">(no title)</a>
-          </li>
-        
-          <li>
             <a href="/2021/10/09/sed/">(no title)</a>
           </li>
         
           <li>
             <a href="/2021/10/09/awk/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/09/%E4%B8%89%E5%89%91%E5%AE%A2-%E4%BF%AE%E6%94%B9firewall%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97/">三剑客-修改firewall根据日志</a>
           </li>
         
           <li>
