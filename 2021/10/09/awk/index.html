@@ -1,37 +1,715 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="命令分布 格式 123456789awk -F|-f|-v &amp;#x27;BEGIN&amp;#123; &amp;#125; &#x2F; &#x2F; &amp;#123;comand1;comand2&amp;#125; END&amp;#123; &amp;#125;&amp;#x27; file-F 定义列分隔符-f 指定调用脚本-v 定义变量&amp;#x27; &amp;#x27;引用代码块，awk执行语句必须包含在内BEGIN&amp;#123; &amp;#125; 初始化代码块，在对每">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/09/awk/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="命令分布 格式 123456789awk -F|-f|-v &amp;#x27;BEGIN&amp;#123; &amp;#125; &#x2F; &#x2F; &amp;#123;comand1;comand2&amp;#125; END&amp;#123; &amp;#125;&amp;#x27; file-F 定义列分隔符-f 指定调用脚本-v 定义变量&amp;#x27; &amp;#x27;引用代码块，awk执行语句必须包含在内BEGIN&amp;#123; &amp;#125; 初始化代码块，在对每">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-09T07:51:36.858Z">
+<meta property="article:modified_time" content="2021-09-30T07:52:24.506Z">
+<meta property="article:author" content="cas">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2021/10/09/awk/"/>
+
+
+
+
+
+  <title> | Hexo</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/09/awk/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-10-09T15:51:36+08:00">
+                2021-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="命令分布"><a href="#命令分布" class="headerlink" title="命令分布"></a>命令分布</h4><ol>
+<li><p>格式</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">awk -F|-f|-v <span class="string">&#x27;BEGIN&#123; &#125; / / &#123;comand1;comand2&#125; END&#123; &#125;&#x27;</span> file</span><br><span class="line">-F 定义列分隔符</span><br><span class="line">-f 指定调用脚本</span><br><span class="line">-v 定义变量</span><br><span class="line"><span class="string">&#x27; &#x27;</span>引用代码块，awk执行语句必须包含在内</span><br><span class="line">BEGIN&#123; &#125; 初始化代码块，在对每一行进行处理之前，初始化代码，主要是引用全局变量，设置FS分隔符</span><br><span class="line">&#123; &#125; 命令代码块，包含一条或多条命令</span><br><span class="line"><span class="comment">// 用来定义需要匹配的模式（字符串或者正则表达式），对满足匹配模式的行进行上条代码块的操作</span></span><br><span class="line">END&#123; &#125;  结尾代码块，在对每一行进行处理之后再执行的代码块，主要是进行最终计算或输出结尾摘要信息</span><br></pre></td></tr></table></figure></li>
+<li><p>print</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> 是awk打印指定内容的主要命令</span><br><span class="line">awk <span class="string">&#x27;&#123;print&#125;&#x27;</span>  /etc/passwd   ==   awk <span class="string">&#x27;&#123;print <span class="subst">$0</span>&#125;&#x27;</span>  /etc/passwd  </span><br><span class="line">awk <span class="string">&#x27;&#123;print &quot; &quot;&#125;&#x27;</span> /etc/passwd                                           <span class="comment">//不输出passwd的内容，而是输出相同个数的空行，进一步解释了awk是一行一行处理文本</span></span><br><span class="line">awk <span class="string">&#x27;&#123;print &quot;a&quot;&#125;&#x27;</span>   /etc/passwd                                        <span class="comment">//输出相同个数的a行，一行只有一个a字母</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print <span class="subst">$1</span>&#125;&#x27;</span>  /etc/passwd </span><br><span class="line">awk -F: <span class="string">&#x27;&#123;print <span class="subst">$1</span>; print <span class="subst">$2</span>&#125;&#x27;</span>   /etc/passwd                   <span class="comment">//将每一行的前二个字段，分行输出，进一步理解一行一行处理文本</span></span><br><span class="line">awk  -F: <span class="string">&#x27;&#123;print <span class="subst">$1</span>,<span class="subst">$3</span>,<span class="subst">$6</span>&#125;&#x27;</span> OFS=<span class="string">&quot;\t&quot;</span> /etc/passwd        <span class="comment">//输出字段1,3,6，以制表符作为分隔符</span></span><br></pre></td></tr></table></figure></li>
+<li><p>-f指定脚本</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="operator">-</span>f script.awk  file</span><br><span class="line"><span class="type">BEGIN</span>&#123;</span><br><span class="line"><span class="type">FS</span><span class="operator">=</span><span class="string">&quot;:&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;print <span class="variable">$1</span>&#125;               <span class="comment">//效果与awk -F&quot;:&quot; &#x27;&#123;print $1&#125;&#x27;相同,只是分隔符使用FS在代码自身中指定</span></span><br></pre></td></tr></table></figure></li>
+<li><p>匹配字符串</p>
+<ol>
+<li><p>-F指定分割符</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$<span class="number">1</span> 指指定分隔符后，第一个字段，$<span class="number">3</span>第三个字段， \t是制表符</span><br><span class="line">一个或多个连续的空格或制表符看做一个定界符，即多个空格看做一个空格</span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print <span class="subst">$1</span>&#125;&#x27;</span>  /etc/passwd</span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print <span class="subst">$1</span> <span class="subst">$3</span>&#125;&#x27;</span>  /etc/passwd                       <span class="comment">//$1与$3相连输出，不分隔</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print <span class="subst">$1</span>,<span class="subst">$3</span>&#125;&#x27;</span>  /etc/passwd                       <span class="comment">//多了一个逗号，$1与$3使用空格分隔</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print <span class="subst">$1</span> &quot; &quot; <span class="subst">$3</span>&#125;&#x27;</span>  /etc/passwd                  <span class="comment">//$1与$3之间手动添加空格分隔</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print &quot;Username:&quot; <span class="subst">$1</span> &quot;\t\t Uid:&quot; <span class="subst">$3</span> &#125;&#x27;</span> /etc/passwd       <span class="comment">//自定义输出  </span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;print NF&#125;&#x27;</span> /etc/passwd                                <span class="comment">//显示每行有多少字段</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;print <span class="subst">$NF</span>&#125;&#x27;</span> /etc/passwd                              <span class="comment">//将每行第NF个字段的值打印出来</span></span><br><span class="line"> awk -F: <span class="string">&#x27;NF==4 &#123;print &#125;&#x27;</span> /etc/passwd                       <span class="comment">//显示只有4个字段的行</span></span><br><span class="line">awk -F: <span class="string">&#x27;NF&gt;2&#123;print <span class="subst">$0</span>&#125;&#x27;</span> /etc/passwd                       <span class="comment">//显示每行字段数量大于2的行</span></span><br><span class="line">awk <span class="string">&#x27;&#123;print NR,<span class="subst">$0</span>&#125;&#x27;</span> /etc/passwd                                 <span class="comment">//输出每行的行号</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;print NR,NF,<span class="subst">$NF</span>,&quot;\t&quot;,<span class="subst">$0</span>&#125;&#x27;</span> /etc/passwd      <span class="comment">//依次打印行号，字段数，最后字段值，制表符，每行内容</span></span><br><span class="line">awk -F: <span class="string">&#x27;NR==5&#123;print&#125;&#x27;</span>  /etc/passwd                         <span class="comment">//显示第5行</span></span><br><span class="line">awk -F: <span class="string">&#x27;NR==5 || NR==6&#123;print&#125;&#x27;</span>  /etc/passwd       <span class="comment">//显示第5行和第6行</span></span><br><span class="line">route -n|awk <span class="string">&#x27;NR!=1&#123;print&#125;&#x27;</span>                                       <span class="comment">//不显示第一行</span></span><br></pre></td></tr></table></figure></li>
+<li><p>//匹配代码块</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//纯字符匹配   !//纯字符不匹配   ~//字段值匹配    !~//字段值不匹配   ~/a1|a2/字段值匹配a1或a2   </span></span><br><span class="line">awk <span class="string">&#x27;/mysql/&#x27;</span> /etc/passwd</span><br><span class="line">awk <span class="string">&#x27;/mysql/&#123;print &#125;&#x27;</span> /etc/passwd</span><br><span class="line">awk <span class="string">&#x27;/mysql/&#123;print <span class="subst">$0</span>&#125;&#x27;</span> /etc/passwd                   <span class="comment">//三条指令结果一样</span></span><br><span class="line">awk <span class="string">&#x27;!/mysql/&#123;print <span class="subst">$0</span>&#125;&#x27;</span> /etc/passwd                  <span class="comment">//输出不匹配mysql的行</span></span><br><span class="line">awk <span class="string">&#x27;/mysql|mail/&#123;print&#125;&#x27;</span> /etc/passwd</span><br><span class="line">awk <span class="string">&#x27;!/mysql|mail/&#123;print&#125;&#x27;</span> /etc/passwd</span><br><span class="line">awk -F: <span class="string">&#x27;/mail/,/mysql/&#123;print&#125;&#x27;</span> /etc/passwd         <span class="comment">//区间匹配</span></span><br><span class="line">awk <span class="string">&#x27;/[2][7][7]*/&#123;print <span class="subst">$0</span>&#125;&#x27;</span> /etc/passwd               <span class="comment">//匹配包含27为数字开头的行，如27，277，2777...</span></span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$1</span>~/mail/&#123;print <span class="subst">$1</span>&#125;&#x27;</span> /etc/passwd           <span class="comment">//$1匹配指定内容才显示</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$1</span>~/mail/) print <span class="subst">$1</span>&#125;&#x27;</span> /etc/passwd     <span class="comment">//与上面相同</span></span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$1</span>!~/mail/&#123;print <span class="subst">$1</span>&#125;&#x27;</span> /etc/passwd          <span class="comment">//不匹配</span></span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$1</span>!~/mail|mysql/&#123;print <span class="subst">$1</span>&#125;&#x27;</span> /etc/passwd </span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>字符数字表达式</p>
+<ol>
+<li><p>条件表达式</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">==   !=   &gt;   &gt;=  </span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;<span class="subst">$1</span>==&quot;mysql&quot;&#123;print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd  </span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;if(<span class="subst">$1</span>==&quot;mysql&quot;) print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd          <span class="comment">//与上面相同 </span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;<span class="subst">$1</span>!=&quot;mysql&quot;&#123;print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd                 <span class="comment">//不等于</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;<span class="subst">$3</span>&gt;1000&#123;print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd                      <span class="comment">//大于</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;<span class="subst">$3</span>&gt;=100&#123;print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd                     <span class="comment">//大于等于</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;<span class="subst">$3</span>&lt;1&#123;print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd                            <span class="comment">//小于</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;<span class="subst">$3</span>&lt;=1&#123;print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd                         <span class="comment">//小于等于</span></span><br></pre></td></tr></table></figure></li>
+<li><p>逻辑运算符</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&amp;&amp;　|| </span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$1</span>~/mail/ &amp;&amp; <span class="subst">$3</span>&gt;8 &#123;print &#125;&#x27;</span> /etc/passwd         <span class="comment">//逻辑与，$1匹配mail，并且$3&gt;8</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$1</span>~/mail/ &amp;&amp; <span class="subst">$3</span>&gt;8) print &#125;&#x27;</span> /etc/passwd</span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$1</span>~/mail/ || <span class="subst">$3</span>&gt;1000 &#123;print &#125;&#x27;</span> /etc/passwd       <span class="comment">//逻辑或</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$1</span>~/mail/ || <span class="subst">$3</span>&gt;1000) print &#125;&#x27;</span> /etc/passwd</span><br></pre></td></tr></table></figure></li>
+<li><p>数值运算</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$3</span> &gt; 100&#x27;</span> /etc/passwd    </span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$3</span> &gt; 100 || <span class="subst">$3</span> &lt; 5&#x27;</span> /etc/passwd  </span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$3</span>+<span class="subst">$4</span> &gt; 200&#x27;</span> /etc/passwd</span><br><span class="line">awk -F: <span class="string">&#x27;/mysql|mail/&#123;print <span class="subst">$3</span>+10&#125;&#x27;</span> /etc/passwd                    <span class="comment">//第三个字段加10打印 </span></span><br><span class="line">awk -F: <span class="string">&#x27;/mysql/&#123;print <span class="subst">$3</span>-<span class="subst">$4</span>&#125;&#x27;</span> /etc/passwd                             <span class="comment">//减法</span></span><br><span class="line">awk -F: <span class="string">&#x27;/mysql/&#123;print <span class="subst">$3</span>*<span class="subst">$4</span>&#125;&#x27;</span> /etc/passwd                             <span class="comment">//求乘积</span></span><br><span class="line">awk <span class="string">&#x27;/MemFree/&#123;print <span class="subst">$2</span>/1024&#125;&#x27;</span> /proc/meminfo                  <span class="comment">//除法</span></span><br><span class="line">awk <span class="string">&#x27;/MemFree/&#123;print int(<span class="subst">$2</span>/1024)&#125;&#x27;</span> /proc/meminfo           <span class="comment">//取整</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>输出格式</p>
+<ol>
+<li><p>输出分隔符OFS</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&#x27;<span class="subst">$6</span> ~ /FIN/ || NR==1 &#123;print NR,<span class="subst">$4</span>,<span class="subst">$5</span>,<span class="subst">$6</span>&#125;&#x27;</span> OFS=<span class="string">&quot;\t&quot;</span> netstat.txt</span><br><span class="line">awk <span class="string">&#x27;<span class="subst">$6</span> ~ /WAIT/ || NR==1 &#123;print NR,<span class="subst">$4</span>,<span class="subst">$5</span>,<span class="subst">$6</span>&#125;&#x27;</span> OFS=<span class="string">&quot;\t&quot;</span> netstat.txt        </span><br><span class="line"><span class="comment">//输出字段6匹配WAIT的行，其中输出每行行号，字段4，5,6，并使用制表符分割字段</span></span><br></pre></td></tr></table></figure></li>
+<li><p>格式化输出</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp|awk <span class="string">&#x27;&#123;printf &quot;%-8s %-8s %-10s\n&quot;,<span class="subst">$1</span>,<span class="subst">$2</span>,<span class="subst">$3</span>&#125;&#x27;</span> </span><br><span class="line">printf表示格式输出</span><br><span class="line">%格式化输出分隔符</span><br><span class="line"><span class="number">-8</span>长度为<span class="number">8</span>个字符</span><br><span class="line">s表示字符串类型</span><br><span class="line">打印每行前三个字段，指定第一个字段输出字符串类型(长度为<span class="number">8</span>)，第二个字段输出字符串类型(长度为<span class="number">8</span>),</span><br><span class="line">第三个字段输出字符串类型(长度为<span class="number">10</span>)</span><br><span class="line">netstat -anp|awk <span class="string">&#x27;<span class="subst">$6</span>==&quot;LISTEN&quot; || NR==1 &#123;printf &quot;%-10s %-10s %-10s \n&quot;,<span class="subst">$1</span>,<span class="subst">$2</span>,<span class="subst">$3</span>&#125;&#x27;</span></span><br><span class="line">netstat -anp|awk <span class="string">&#x27;<span class="subst">$6</span>==&quot;LISTEN&quot; || NR==1 &#123;printf &quot;%-3s %-10s %-10s %-10s \n&quot;,NR,<span class="subst">$1</span>,<span class="subst">$2</span>,<span class="subst">$3</span>&#125;&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>循环语句</p>
+<ol>
+<li><p>IF语句</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">必须用在&#123;&#125;中，且比较内容用()扩起来</span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$1</span>~/mail/) print <span class="subst">$1</span>&#125;&#x27;</span> /etc/passwd                                       <span class="comment">//简写</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$1</span>~/mail/) &#123;print <span class="subst">$1</span>&#125;&#125;&#x27;</span>  /etc/passwd                                   <span class="comment">//全写</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$1</span>~/mail/) &#123;print <span class="subst">$1</span>&#125; else &#123;print <span class="subst">$2</span>&#125;&#125;&#x27;</span> /etc/passwd            <span class="comment">//if...else...</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$3</span>&gt;100) print &quot;large&quot;; else print &quot;small&quot;&#125;&#x27;</span> /etc/passwd</span><br><span class="line">small</span><br><span class="line">small</span><br><span class="line">small</span><br><span class="line">large</span><br><span class="line">small</span><br><span class="line">small</span><br><span class="line">awk -F: <span class="string">&#x27;BEGIN&#123;A=0;B=0&#125; &#123;if(<span class="subst">$3</span>&gt;100) &#123;A++; print &quot;large&quot;&#125; else &#123;B++; print &quot;small&quot;&#125;&#125; END&#123;print A,&quot;\t&quot;,B&#125;&#x27;</span> /etc/passwd </span><br><span class="line">                                                                                                                  <span class="comment">//ID大于100,A加1，否则B加1</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$3</span>&lt;100) next; else print&#125;&#x27;</span> /etc/passwd                         <span class="comment">//小于100跳过，否则显示</span></span><br><span class="line">awk -F: <span class="string">&#x27;BEGIN&#123;i=1&#125; &#123;if(i&lt;NF) print NR,NF,i++ &#125;&#x27;</span> /etc/passwd   </span><br><span class="line">awk -F: <span class="string">&#x27;BEGIN&#123;i=1&#125; &#123;if(i&lt;NF) &#123;print NR,NF&#125; i++ &#125;&#x27;</span> /etc/passwd</span><br><span class="line">另一种形式</span><br><span class="line">awk -F: <span class="string">&#x27;&#123;print (<span class="subst">$3</span>&gt;100 ? &quot;yes&quot;:&quot;no&quot;)&#125;&#x27;</span>  /etc/passwd </span><br><span class="line">awk -F: <span class="string">&#x27;&#123;print (<span class="subst">$3</span>&gt;100 ? <span class="subst">$3</span>&quot;:\tyes&quot;:<span class="subst">$3</span>&quot;:\tno&quot;)&#125;&#x27;</span>  /etc/passwd</span><br></pre></td></tr></table></figure></li>
+<li><p>while语句</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">awk -F: <span class="string">&#x27;BEGIN&#123;i=1&#125; &#123;while(i&lt;NF) print NF,<span class="subst">$i</span>,i++&#125;&#x27;</span> /etc/passwd </span><br><span class="line"><span class="number">7</span> root <span class="number">1</span></span><br><span class="line"><span class="number">7</span> x <span class="number">2</span></span><br><span class="line"><span class="number">7</span> <span class="number">0</span> <span class="number">3</span></span><br><span class="line"><span class="number">7</span> <span class="number">0</span> <span class="number">4</span></span><br><span class="line"><span class="number">7</span> root <span class="number">5</span></span><br><span class="line"><span class="number">7</span> /root <span class="number">6</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>数组</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">netstat <span class="operator">-</span>anp<span class="operator">|</span>awk &#x27;<span class="type">NR</span>!<span class="operator">=</span><span class="number">1</span>&#123;a[<span class="variable">$6</span>]<span class="operator">++</span>&#125; <span class="type">END</span>&#123;<span class="keyword">for</span> (i <span class="keyword">in</span> a) print i,<span class="string">&quot;<span class="subst">\t</span>&quot;</span>,a[i]&#125;&#x27;</span><br><span class="line">netstat <span class="operator">-</span>anp<span class="operator">|</span>awk &#x27;<span class="type">NR</span>!<span class="operator">=</span><span class="number">1</span>&#123;a[<span class="variable">$6</span>]<span class="operator">++</span>&#125; <span class="type">END</span>&#123;<span class="keyword">for</span> (i <span class="keyword">in</span> a) printf <span class="string">&quot;%-20s %-10s %-5s <span class="subst">\n</span>&quot;</span>, i,<span class="string">&quot;<span class="subst">\t</span>&quot;</span>,a[i]&#125;&#x27;</span><br><span class="line"><span class="number">9523</span>                               <span class="number">1</span>     </span><br><span class="line"><span class="number">9929</span>                               <span class="number">1</span>     </span><br><span class="line"><span class="type">LISTEN</span>                            <span class="number">6</span>     </span><br><span class="line"><span class="number">7903</span>                               <span class="number">1</span>     </span><br><span class="line"><span class="number">3038</span><span class="operator">/</span>cupsd                   <span class="number">1</span>     </span><br><span class="line"><span class="number">7913</span>                               <span class="number">1</span>     </span><br><span class="line"><span class="number">10837</span>                             <span class="number">1</span>     </span><br><span class="line"><span class="number">9833</span>                               <span class="number">1</span>     </span><br></pre></td></tr></table></figure></li>
+<li><p>特殊要点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$0</span>           表示整个当前行</span><br><span class="line"><span class="variable">$1</span>           每行第一个字段</span><br><span class="line">NF          字段数量变量</span><br><span class="line">NR          每行的记录号，多文件记录递增</span><br><span class="line">FNR         与NR类似，不过多文件记录不递增，每个文件都从1开始</span><br><span class="line">\t          制表符</span><br><span class="line">\n          换行符</span><br><span class="line">FS          BEGIN时定义分隔符</span><br><span class="line">RS          输入的记录分隔符， 默认为换行符(即文本是按一行一行输入)</span><br><span class="line">~            匹配，与==相比不是精确比较</span><br><span class="line">!~           不匹配，不精确比较</span><br><span class="line">==           等于，必须全部相等，精确比较</span><br><span class="line">!=           不等于，精确比较</span><br><span class="line">&amp;&amp;　         逻辑与</span><br><span class="line">||              逻辑或</span><br><span class="line">+              匹配时表示1个或1个以上</span><br><span class="line">/[0-9][0-9]+/   两个或两个以上数字</span><br><span class="line">/[0-9][0-9]*/    一个或一个以上数字</span><br><span class="line">FILENAME 文件名</span><br><span class="line">OFS      输出字段分隔符， 默认也是空格，可以改为制表符等</span><br><span class="line">ORS        输出的记录分隔符，默认为换行符,即处理结果也是一行一行输出到屏幕</span><br><span class="line">-F<span class="string">&#x27;[:#/]&#x27;</span>   定义三个分隔符</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cae3cccd2ee6" title="写的好文章">引用</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/10/09/first-hello-word/" rel="next" title="first hello word">
+                <i class="fa fa-chevron-left"></i> first hello word
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/10/09/sed/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%88%86%E5%B8%83"><span class="nav-number">1.</span> <span class="nav-text">命令分布</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cas</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
