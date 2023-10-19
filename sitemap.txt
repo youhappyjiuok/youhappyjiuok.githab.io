@@ -10,4 +10,6 @@ http://example.com/2021/10/09/sed/
 http://example.com/2021/10/09/awk/
 http://example.com/
 http://example.com/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA/
+http://example.com/tags/%E6%93%8D%E4%BD%9C/
 http://example.com/categories/%E7%A1%AC%E4%BB%B6/
+http://example.com/categories/blog/
