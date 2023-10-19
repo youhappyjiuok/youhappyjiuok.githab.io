@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="软考信息安全," />
 
 
 
@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="hello word">
+<meta name="description" content="学了个数论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="first hello word">
-<meta property="og:url" content="http://example.com/2021/10/09/first-hello-word/index.html">
+<meta property="og:title" content="下午数论计算">
+<meta property="og:url" content="http://example.com/2023/10/19/%E4%B8%8B%E5%8D%88%E6%95%B0%E8%AE%BA%E8%AE%A1%E7%AE%97/index.html">
 <meta property="og:site_name" content="吃饱不说话">
-<meta property="og:description" content="hello word">
+<meta property="og:description" content="学了个数论">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-09T06:25:18.000Z">
-<meta property="article:modified_time" content="2021-10-09T06:26:37.537Z">
+<meta property="article:published_time" content="2023-10-19T07:07:26.000Z">
+<meta property="article:modified_time" content="2023-10-19T07:16:51.651Z">
 <meta property="article:author" content="WaHaHa">
+<meta property="article:tag" content="软考信息安全">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2021/10/09/first-hello-word/"/>
+  <link rel="canonical" href="http://example.com/2023/10/19/下午数论计算/"/>
 
 
 
 
 
-  <title>first hello word | 吃饱不说话</title>
+  <title>下午数论计算 | 吃饱不说话</title>
   
 
 
@@ -252,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/09/first-hello-word/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/19/%E4%B8%8B%E5%8D%88%E6%95%B0%E8%AE%BA%E8%AE%A1%E7%AE%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -269,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">first hello word</h1>
+          <h1 class="post-title" itemprop="name headline">下午数论计算</h1>
         
 
         <div class="post-meta">
@@ -281,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-10-09T14:25:18+08:00">
-                2021-10-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2023-10-19T15:07:26+08:00">
+                2023-10-19
               </time>
             
 
@@ -291,6 +292,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index">
+                    <span itemprop="name">知识点</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -319,7 +342,19 @@
       
 
       
-        <p>hello word</p>
+        <h1 id="学了个数论"><a href="#学了个数论" class="headerlink" title="学了个数论"></a>学了个数论</h1><span id="more"></span>
+
+<h4 id="RSA-公钥算私钥"><a href="#RSA-公钥算私钥" class="headerlink" title="RSA 公钥算私钥"></a>RSA 公钥算私钥</h4><p>基本计算—经典例子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">逆元升级版，F需要自己算下，最后也就是碰-1后是整数的</span><br><span class="line">（e,n）=(13,35)</span><br><span class="line">N=5*7=35</span><br><span class="line">F= (5-1)*(7-1)=24</span><br><span class="line">e1=13</span><br><span class="line">e1*e2 mod 24 =1 </span><br><span class="line">e2=13</span><br><span class="line">-自己写一个- 硬推整数</span><br><span class="line">d=19 p=17 q=19</span><br><span class="line">（e,n） = (91,323)</span><br><span class="line">N=17*19</span><br><span class="line">F=16*18=288</span><br><span class="line">e1=91</span><br><span class="line">e1*e2 mod 288 = 1</span><br><span class="line">288*n+1/e1 = 整数d</span><br><span class="line">e2 = 19</span><br><span class="line">j</span><br><span class="line">7mod 40 =1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h4><p>基本计算—经典例子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line">-判断-</span><br><span class="line">乘67对119取模，为1就是</span><br><span class="line">67 mod119</span><br><span class="line">（67*x-1）/119=n n为整数</span><br><span class="line">-叠加相除-</span><br><span class="line">67x-119y=1</span><br><span class="line">119 = 1 * 67 + 52</span><br><span class="line">67 = 1 * 52 + 15</span><br><span class="line">52 = 15 * 3 + 7</span><br><span class="line">15 = 7 *2 + 1</span><br><span class="line">7 = 1 *7</span><br><span class="line">1 = 15- 7*2</span><br><span class="line"> = 15 - 2*(52 - 15 * 3 )</span><br><span class="line"> = 15 * 7 - 2 * 52</span><br><span class="line"> = (67 - 52) * 7 - 2 * 52</span><br><span class="line"> = 67 *7 -52 * 9</span><br><span class="line"> = 67 * 7 - (119-67)*9</span><br><span class="line"> = 67 *16 - 119 * 9</span><br><span class="line"> --缺陷--</span><br><span class="line"> 11x-26y=1</span><br><span class="line">26 = 11*2 +4</span><br><span class="line">11 = 4*2 +3</span><br><span class="line">4 = 3*1 +1</span><br><span class="line">1= 4-3</span><br><span class="line">	= 4-(11-4*2)</span><br><span class="line">	=4*3 - 11</span><br><span class="line">	=(26-11*2)*3-11</span><br><span class="line">	=26*3-11*7</span><br><span class="line">	=-7+26 负数再加一个26</span><br><span class="line">	19</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><ol>
+<li><a target="_blank" rel="noopener" href="https://my.oschina.net/u/4362986/blog/3852703" title="更多例子"><strong>叠加相除</strong></a></li>
+</ol>
 
       
     </div>
@@ -335,6 +370,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/%E8%BD%AF%E8%80%83%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" rel="tag"># 软考信息安全</a>
+          
+        </div>
+      
 
       
       
@@ -344,8 +385,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/10/09/%E4%B8%89%E5%89%91%E5%AE%A2-%E4%BF%AE%E6%94%B9firewall%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97/" rel="next" title="修改firewall根据日志">
-                <i class="fa fa-chevron-left"></i> 修改firewall根据日志
+              <a href="/2023/10/19/%E7%9F%A5%E8%AF%86%E7%82%B9%E8%B5%84%E6%96%99/" rel="next" title="知识点资料">
+                <i class="fa fa-chevron-left"></i> 知识点资料
               </a>
             
           </div>
@@ -354,8 +395,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/10/09/%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2/" rel="prev" title="三层交换">
-                三层交换 <i class="fa fa-chevron-right"></i>
+              <a href="/2023/10/19/%E4%B8%8A%E5%8D%88%E7%90%86%E8%AE%BA(%E6%9C%AA%E6%95%B4%E7%90%86)/" rel="prev" title="上午理论(未整理)">
+                上午理论(未整理) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -408,8 +449,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -469,6 +519,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%BA%86%E4%B8%AA%E6%95%B0%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">学了个数论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RSA-%E5%85%AC%E9%92%A5%E7%AE%97%E7%A7%81%E9%92%A5"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">RSA 公钥算私钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%86%E5%85%83"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">逆元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">链接</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
