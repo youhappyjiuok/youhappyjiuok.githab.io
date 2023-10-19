@@ -239,153 +239,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/09/%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吃饱不说话">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/10/09/%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-10-09T17:20:17+08:00">
-                2021-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://i.loli.net/2021/10/09/2nNPSGW59YJrk6M.png" alt="image-20211009171800707"></p>
-<h4 id="三层交换"><a href="#三层交换" class="headerlink" title="三层交换"></a>三层交换</h4><ol>
-<li><p>LSW1</p>
-<ol>
-<li><p>划分vlan</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sysname LSW1</span><br><span class="line">vlan batch 20 30 40</span><br></pre></td></tr></table></figure></li>
-<li><p>确认接入类型</p>
-<ol>
-<li><p>接口加入vlan中</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/1</span><br><span class="line">port link-type access</span><br><span class="line">p d v 20</span><br><span class="line">un sh</span><br><span class="line">q</span><br></pre></td></tr></table></figure></li>
-<li><p>查看当前配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis th</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>划分虚接口</p>
-<ol>
-<li><p>配置网关地址LSW1下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int Vlanif 20</span><br><span class="line">ip address 20.0.0.1 24</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>pc</p>
-<ol>
-<li>对应access网段中ip,掩码,网关</li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/09/%E5%85%A5%E9%97%A8%E5%AE%9E%E9%AA%8C-%E5%BC%B9%E6%80%A7%E5%AE%B9%E7%81%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -457,27 +310,34 @@
       
         
           
-            <h4 id="模拟"><a href="#模拟" class="headerlink" title="模拟"></a>模拟</h4><ol>
-<li><p>设置顺序</p>
-<ol>
-<li>确定设备</li>
-<li>确定节点</li>
-<li>初始化节点，配置网关ip</li>
-<li>确定划分方法（pc设备网关，其他网关）</li>
-<li>测试ip 不通再看tracert</li>
-</ol>
-</li>
-<li><p>优先级</p>
-<ul>
-<li><p>默认优先级为60</p>
-</li>
-<li><p>修改优先级，数越大优先级越小</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip route-static 目标网段  矢量下一跳ip preference 70</span><br></pre></td></tr></table></figure></li>
-</ol>
+          模拟
+设置顺序
+
+确定设备
+确定节点
+初始化节点，配置网关ip
+确定划分方法（pc设备网关，其他网关）
+测试ip 不通再看tracert
+
+
+优先级
+
+默认优先级为60
+
+修改优先级，数越大优先级越小
+
+
+1ip route-static 目标网段  矢量下一跳ip preference 70
+
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/10/09/%E5%85%A5%E9%97%A8%E5%AE%9E%E9%AA%8C-%E5%BC%B9%E6%80%A7%E5%AE%B9%E7%81%BE/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -595,8 +455,15 @@
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/10/09/%E9%85%8D%E7%BD%AEepel%E6%BA%90%EF%BC%8Cyum%E5%AE%89%E8%A3%85/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -714,55 +581,28 @@
       
         
           
-            <p><img src="https://i.loli.net/2021/10/09/3XDbM71nr2OcAwo.png" alt="image-20211008175429072"></p>
-<ol>
-<li><p>配置交换机LSW1</p>
-<ol>
-<li><p>划分access</p>
-<ol>
-<li><p>允许划分</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">undo info-center enable</span><br></pre></td></tr></table></figure></li>
-<li><p>增加vlan</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vlan batch <span class="number">18</span> <span class="number">20</span></span><br></pre></td></tr></table></figure></li>
-<li><p>进入接口，定义类型，节点归属</p>
-</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> e0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">port link-type access</span><br><span class="line">port <span class="keyword">default</span> vlan <span class="number">18</span></span><br><span class="line">(可简写为p d v <span class="number">18</span>)</span><br><span class="line">un sh</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>查看节点状态</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis th</span><br></pre></td></tr></table></figure></li>
-<li><p>划分trunk</p>
-<ol>
-<li>进入接口，定义类型，节点归属</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">port link-type trunk</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>控制放行vlan</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">port trunk allow-pass vlan all</span><br></pre></td></tr></table></figure></li>
-<li><p>配置路由器AR1</p>
-<ol>
-<li>进入配置为子接口，定义网关ip(其他接口同理)</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> g0/<span class="number">0</span>/<span class="number">0.18</span></span><br><span class="line">dot1q termination vid <span class="number">18</span></span><br><span class="line">ip address <span class="number">10.7</span><span class="number">.2</span><span class="number">.1</span> <span class="number">24</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>允许开启arp广播</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arp broadcast enable</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>打开</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">un sh</span><br><span class="line">q</span><br><span class="line">save</span><br></pre></td></tr></table></figure></li>
-</ol>
-
           
+
+配置交换机LSW1
+
+划分access
+
+允许划分
+1undo info-center enable
+增加vlan
+1vlan batch 18 20
+进入接口，定义类型，节点归属
+
+
+12345int e0/0/1port link-type accessport default vlan 1
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/10/09/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -880,28 +720,21 @@
       
         
           
-            <h4 id="命令分布"><a href="#命令分布" class="headerlink" title="命令分布"></a>命令分布</h4><ol>
-<li><p>格式</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed [ -nefr] [n1,n2] acction </span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>执行模式</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-n: 是安静模式，只有经过sed处理的行才会显示，其他不显示</span><br><span class="line">-e: 表示直接在命令行上执行。是默认选项不用填写。</span><br><span class="line">-f: 将Sed的操作写在一个文件里面，用的时候-f filename 就可以按照内容进行Sed操作</span><br><span class="line">-r：表示支持扩展正则表达式，默认支持基础正则表达式</span><br><span class="line">-i: 直接修改读取的文件内容，而不是由文件输出</span><br><span class="line">n1,n2 代表的是行数</span><br></pre></td></tr></table></figure></li>
-<li><p>action动作支持参数</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a: 表示添加，后接字符串，添加到当前行的下一行</span><br><span class="line">c：表示替换，后接的字符串，用它来替换N1到N2之间的行</span><br><span class="line">d：删除行</span><br><span class="line">i：表示插入，后街字符串，添加到当然行的上一行</span><br><span class="line">p:表示打印和-n一起使用</span><br><span class="line">s: 表示搜索，还可以替换<span class="number">1</span>,<span class="number">20</span>s/old/<span class="keyword">new</span>/g表示把<span class="number">1</span>到<span class="number">20</span>行的old换成<span class="keyword">new</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-</ol>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/303618e3e1db" title="简书">引用</a></p>
-<ol start="2">
-<li>删除</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;/^$/d&#x27;</span> test.txt     <span class="comment">//删除空格行</span></span><br></pre></td></tr></table></figure>
+          命令分布
+格式
+1sed [ -nefr] [n1,n2] acction 
 
 
-
-
-          
+执行模式
+123456-n: 是安静模式，只有经过sed处理的行才会显示，其他不显示-e: 表示直接在命令行上执行。是默认选项不用填写。-f: 将Sed的操作写在一个文件里面，用的时候-f filename 就可以按照
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/10/09/sed/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1019,55 +852,17 @@
       
         
           
-            <h4 id="命令分布"><a href="#命令分布" class="headerlink" title="命令分布"></a>命令分布</h4><ol>
-<li><p>格式</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">awk -F|-f|-v <span class="string">&#x27;BEGIN&#123; &#125; / / &#123;comand1;comand2&#125; END&#123; &#125;&#x27;</span> file</span><br><span class="line">-F 定义列分隔符</span><br><span class="line">-f 指定调用脚本</span><br><span class="line">-v 定义变量</span><br><span class="line"><span class="string">&#x27; &#x27;</span>引用代码块，awk执行语句必须包含在内</span><br><span class="line">BEGIN&#123; &#125; 初始化代码块，在对每一行进行处理之前，初始化代码，主要是引用全局变量，设置FS分隔符</span><br><span class="line">&#123; &#125; 命令代码块，包含一条或多条命令</span><br><span class="line"><span class="comment">// 用来定义需要匹配的模式（字符串或者正则表达式），对满足匹配模式的行进行上条代码块的操作</span></span><br><span class="line">END&#123; &#125;  结尾代码块，在对每一行进行处理之后再执行的代码块，主要是进行最终计算或输出结尾摘要信息</span><br></pre></td></tr></table></figure></li>
-<li><p>print</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> 是awk打印指定内容的主要命令</span><br><span class="line">awk <span class="string">&#x27;&#123;print&#125;&#x27;</span>  /etc/passwd   ==   awk <span class="string">&#x27;&#123;print <span class="subst">$0</span>&#125;&#x27;</span>  /etc/passwd  </span><br><span class="line">awk <span class="string">&#x27;&#123;print &quot; &quot;&#125;&#x27;</span> /etc/passwd                                           <span class="comment">//不输出passwd的内容，而是输出相同个数的空行，进一步解释了awk是一行一行处理文本</span></span><br><span class="line">awk <span class="string">&#x27;&#123;print &quot;a&quot;&#125;&#x27;</span>   /etc/passwd                                        <span class="comment">//输出相同个数的a行，一行只有一个a字母</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print <span class="subst">$1</span>&#125;&#x27;</span>  /etc/passwd </span><br><span class="line">awk -F: <span class="string">&#x27;&#123;print <span class="subst">$1</span>; print <span class="subst">$2</span>&#125;&#x27;</span>   /etc/passwd                   <span class="comment">//将每一行的前二个字段，分行输出，进一步理解一行一行处理文本</span></span><br><span class="line">awk  -F: <span class="string">&#x27;&#123;print <span class="subst">$1</span>,<span class="subst">$3</span>,<span class="subst">$6</span>&#125;&#x27;</span> OFS=<span class="string">&quot;\t&quot;</span> /etc/passwd        <span class="comment">//输出字段1,3,6，以制表符作为分隔符</span></span><br></pre></td></tr></table></figure></li>
-<li><p>-f指定脚本</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="operator">-</span>f script.awk  file</span><br><span class="line"><span class="type">BEGIN</span>&#123;</span><br><span class="line"><span class="type">FS</span><span class="operator">=</span><span class="string">&quot;:&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;print <span class="variable">$1</span>&#125;               <span class="comment">//效果与awk -F&quot;:&quot; &#x27;&#123;print $1&#125;&#x27;相同,只是分隔符使用FS在代码自身中指定</span></span><br></pre></td></tr></table></figure></li>
-<li><p>匹配字符串</p>
-<ol>
-<li><p>-F指定分割符</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$<span class="number">1</span> 指指定分隔符后，第一个字段，$<span class="number">3</span>第三个字段， \t是制表符</span><br><span class="line">一个或多个连续的空格或制表符看做一个定界符，即多个空格看做一个空格</span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print <span class="subst">$1</span>&#125;&#x27;</span>  /etc/passwd</span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print <span class="subst">$1</span> <span class="subst">$3</span>&#125;&#x27;</span>  /etc/passwd                       <span class="comment">//$1与$3相连输出，不分隔</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print <span class="subst">$1</span>,<span class="subst">$3</span>&#125;&#x27;</span>  /etc/passwd                       <span class="comment">//多了一个逗号，$1与$3使用空格分隔</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print <span class="subst">$1</span> &quot; &quot; <span class="subst">$3</span>&#125;&#x27;</span>  /etc/passwd                  <span class="comment">//$1与$3之间手动添加空格分隔</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print &quot;Username:&quot; <span class="subst">$1</span> &quot;\t\t Uid:&quot; <span class="subst">$3</span> &#125;&#x27;</span> /etc/passwd       <span class="comment">//自定义输出  </span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;print NF&#125;&#x27;</span> /etc/passwd                                <span class="comment">//显示每行有多少字段</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;print <span class="subst">$NF</span>&#125;&#x27;</span> /etc/passwd                              <span class="comment">//将每行第NF个字段的值打印出来</span></span><br><span class="line"> awk -F: <span class="string">&#x27;NF==4 &#123;print &#125;&#x27;</span> /etc/passwd                       <span class="comment">//显示只有4个字段的行</span></span><br><span class="line">awk -F: <span class="string">&#x27;NF&gt;2&#123;print <span class="subst">$0</span>&#125;&#x27;</span> /etc/passwd                       <span class="comment">//显示每行字段数量大于2的行</span></span><br><span class="line">awk <span class="string">&#x27;&#123;print NR,<span class="subst">$0</span>&#125;&#x27;</span> /etc/passwd                                 <span class="comment">//输出每行的行号</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;print NR,NF,<span class="subst">$NF</span>,&quot;\t&quot;,<span class="subst">$0</span>&#125;&#x27;</span> /etc/passwd      <span class="comment">//依次打印行号，字段数，最后字段值，制表符，每行内容</span></span><br><span class="line">awk -F: <span class="string">&#x27;NR==5&#123;print&#125;&#x27;</span>  /etc/passwd                         <span class="comment">//显示第5行</span></span><br><span class="line">awk -F: <span class="string">&#x27;NR==5 || NR==6&#123;print&#125;&#x27;</span>  /etc/passwd       <span class="comment">//显示第5行和第6行</span></span><br><span class="line">route -n|awk <span class="string">&#x27;NR!=1&#123;print&#125;&#x27;</span>                                       <span class="comment">//不显示第一行</span></span><br></pre></td></tr></table></figure></li>
-<li><p>//匹配代码块</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//纯字符匹配   !//纯字符不匹配   ~//字段值匹配    !~//字段值不匹配   ~/a1|a2/字段值匹配a1或a2   </span></span><br><span class="line">awk <span class="string">&#x27;/mysql/&#x27;</span> /etc/passwd</span><br><span class="line">awk <span class="string">&#x27;/mysql/&#123;print &#125;&#x27;</span> /etc/passwd</span><br><span class="line">awk <span class="string">&#x27;/mysql/&#123;print <span class="subst">$0</span>&#125;&#x27;</span> /etc/passwd                   <span class="comment">//三条指令结果一样</span></span><br><span class="line">awk <span class="string">&#x27;!/mysql/&#123;print <span class="subst">$0</span>&#125;&#x27;</span> /etc/passwd                  <span class="comment">//输出不匹配mysql的行</span></span><br><span class="line">awk <span class="string">&#x27;/mysql|mail/&#123;print&#125;&#x27;</span> /etc/passwd</span><br><span class="line">awk <span class="string">&#x27;!/mysql|mail/&#123;print&#125;&#x27;</span> /etc/passwd</span><br><span class="line">awk -F: <span class="string">&#x27;/mail/,/mysql/&#123;print&#125;&#x27;</span> /etc/passwd         <span class="comment">//区间匹配</span></span><br><span class="line">awk <span class="string">&#x27;/[2][7][7]*/&#123;print <span class="subst">$0</span>&#125;&#x27;</span> /etc/passwd               <span class="comment">//匹配包含27为数字开头的行，如27，277，2777...</span></span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$1</span>~/mail/&#123;print <span class="subst">$1</span>&#125;&#x27;</span> /etc/passwd           <span class="comment">//$1匹配指定内容才显示</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$1</span>~/mail/) print <span class="subst">$1</span>&#125;&#x27;</span> /etc/passwd     <span class="comment">//与上面相同</span></span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$1</span>!~/mail/&#123;print <span class="subst">$1</span>&#125;&#x27;</span> /etc/passwd          <span class="comment">//不匹配</span></span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$1</span>!~/mail|mysql/&#123;print <span class="subst">$1</span>&#125;&#x27;</span> /etc/passwd </span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>字符数字表达式</p>
-<ol>
-<li><p>条件表达式</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">==   !=   &gt;   &gt;=  </span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;<span class="subst">$1</span>==&quot;mysql&quot;&#123;print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd  </span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;if(<span class="subst">$1</span>==&quot;mysql&quot;) print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd          <span class="comment">//与上面相同 </span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;<span class="subst">$1</span>!=&quot;mysql&quot;&#123;print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd                 <span class="comment">//不等于</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;<span class="subst">$3</span>&gt;1000&#123;print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd                      <span class="comment">//大于</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;<span class="subst">$3</span>&gt;=100&#123;print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd                     <span class="comment">//大于等于</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;<span class="subst">$3</span>&lt;1&#123;print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd                            <span class="comment">//小于</span></span><br><span class="line">awk -F<span class="string">&quot;:&quot;</span> <span class="string">&#x27;<span class="subst">$3</span>&lt;=1&#123;print <span class="subst">$3</span>&#125;&#x27;</span> /etc/passwd                         <span class="comment">//小于等于</span></span><br></pre></td></tr></table></figure></li>
-<li><p>逻辑运算符</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&amp;&amp;　|| </span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$1</span>~/mail/ &amp;&amp; <span class="subst">$3</span>&gt;8 &#123;print &#125;&#x27;</span> /etc/passwd         <span class="comment">//逻辑与，$1匹配mail，并且$3&gt;8</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$1</span>~/mail/ &amp;&amp; <span class="subst">$3</span>&gt;8) print &#125;&#x27;</span> /etc/passwd</span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$1</span>~/mail/ || <span class="subst">$3</span>&gt;1000 &#123;print &#125;&#x27;</span> /etc/passwd       <span class="comment">//逻辑或</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$1</span>~/mail/ || <span class="subst">$3</span>&gt;1000) print &#125;&#x27;</span> /etc/passwd</span><br></pre></td></tr></table></figure></li>
-<li><p>数值运算</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$3</span> &gt; 100&#x27;</span> /etc/passwd    </span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$3</span> &gt; 100 || <span class="subst">$3</span> &lt; 5&#x27;</span> /etc/passwd  </span><br><span class="line">awk -F: <span class="string">&#x27;<span class="subst">$3</span>+<span class="subst">$4</span> &gt; 200&#x27;</span> /etc/passwd</span><br><span class="line">awk -F: <span class="string">&#x27;/mysql|mail/&#123;print <span class="subst">$3</span>+10&#125;&#x27;</span> /etc/passwd                    <span class="comment">//第三个字段加10打印 </span></span><br><span class="line">awk -F: <span class="string">&#x27;/mysql/&#123;print <span class="subst">$3</span>-<span class="subst">$4</span>&#125;&#x27;</span> /etc/passwd                             <span class="comment">//减法</span></span><br><span class="line">awk -F: <span class="string">&#x27;/mysql/&#123;print <span class="subst">$3</span>*<span class="subst">$4</span>&#125;&#x27;</span> /etc/passwd                             <span class="comment">//求乘积</span></span><br><span class="line">awk <span class="string">&#x27;/MemFree/&#123;print <span class="subst">$2</span>/1024&#125;&#x27;</span> /proc/meminfo                  <span class="comment">//除法</span></span><br><span class="line">awk <span class="string">&#x27;/MemFree/&#123;print int(<span class="subst">$2</span>/1024)&#125;&#x27;</span> /proc/meminfo           <span class="comment">//取整</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>输出格式</p>
-<ol>
-<li><p>输出分隔符OFS</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&#x27;<span class="subst">$6</span> ~ /FIN/ || NR==1 &#123;print NR,<span class="subst">$4</span>,<span class="subst">$5</span>,<span class="subst">$6</span>&#125;&#x27;</span> OFS=<span class="string">&quot;\t&quot;</span> netstat.txt</span><br><span class="line">awk <span class="string">&#x27;<span class="subst">$6</span> ~ /WAIT/ || NR==1 &#123;print NR,<span class="subst">$4</span>,<span class="subst">$5</span>,<span class="subst">$6</span>&#125;&#x27;</span> OFS=<span class="string">&quot;\t&quot;</span> netstat.txt        </span><br><span class="line"><span class="comment">//输出字段6匹配WAIT的行，其中输出每行行号，字段4，5,6，并使用制表符分割字段</span></span><br></pre></td></tr></table></figure></li>
-<li><p>格式化输出</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp|awk <span class="string">&#x27;&#123;printf &quot;%-8s %-8s %-10s\n&quot;,<span class="subst">$1</span>,<span class="subst">$2</span>,<span class="subst">$3</span>&#125;&#x27;</span> </span><br><span class="line">printf表示格式输出</span><br><span class="line">%格式化输出分隔符</span><br><span class="line"><span class="number">-8</span>长度为<span class="number">8</span>个字符</span><br><span class="line">s表示字符串类型</span><br><span class="line">打印每行前三个字段，指定第一个字段输出字符串类型(长度为<span class="number">8</span>)，第二个字段输出字符串类型(长度为<span class="number">8</span>),</span><br><span class="line">第三个字段输出字符串类型(长度为<span class="number">10</span>)</span><br><span class="line">netstat -anp|awk <span class="string">&#x27;<span class="subst">$6</span>==&quot;LISTEN&quot; || NR==1 &#123;printf &quot;%-10s %-10s %-10s \n&quot;,<span class="subst">$1</span>,<span class="subst">$2</span>,<span class="subst">$3</span>&#125;&#x27;</span></span><br><span class="line">netstat -anp|awk <span class="string">&#x27;<span class="subst">$6</span>==&quot;LISTEN&quot; || NR==1 &#123;printf &quot;%-3s %-10s %-10s %-10s \n&quot;,NR,<span class="subst">$1</span>,<span class="subst">$2</span>,<span class="subst">$3</span>&#125;&#x27;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>循环语句</p>
-<ol>
-<li><p>IF语句</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">必须用在&#123;&#125;中，且比较内容用()扩起来</span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$1</span>~/mail/) print <span class="subst">$1</span>&#125;&#x27;</span> /etc/passwd                                       <span class="comment">//简写</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$1</span>~/mail/) &#123;print <span class="subst">$1</span>&#125;&#125;&#x27;</span>  /etc/passwd                                   <span class="comment">//全写</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$1</span>~/mail/) &#123;print <span class="subst">$1</span>&#125; else &#123;print <span class="subst">$2</span>&#125;&#125;&#x27;</span> /etc/passwd            <span class="comment">//if...else...</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$3</span>&gt;100) print &quot;large&quot;; else print &quot;small&quot;&#125;&#x27;</span> /etc/passwd</span><br><span class="line">small</span><br><span class="line">small</span><br><span class="line">small</span><br><span class="line">large</span><br><span class="line">small</span><br><span class="line">small</span><br><span class="line">awk -F: <span class="string">&#x27;BEGIN&#123;A=0;B=0&#125; &#123;if(<span class="subst">$3</span>&gt;100) &#123;A++; print &quot;large&quot;&#125; else &#123;B++; print &quot;small&quot;&#125;&#125; END&#123;print A,&quot;\t&quot;,B&#125;&#x27;</span> /etc/passwd </span><br><span class="line">                                                                                                                  <span class="comment">//ID大于100,A加1，否则B加1</span></span><br><span class="line">awk -F: <span class="string">&#x27;&#123;if(<span class="subst">$3</span>&lt;100) next; else print&#125;&#x27;</span> /etc/passwd                         <span class="comment">//小于100跳过，否则显示</span></span><br><span class="line">awk -F: <span class="string">&#x27;BEGIN&#123;i=1&#125; &#123;if(i&lt;NF) print NR,NF,i++ &#125;&#x27;</span> /etc/passwd   </span><br><span class="line">awk -F: <span class="string">&#x27;BEGIN&#123;i=1&#125; &#123;if(i&lt;NF) &#123;print NR,NF&#125; i++ &#125;&#x27;</span> /etc/passwd</span><br><span class="line">另一种形式</span><br><span class="line">awk -F: <span class="string">&#x27;&#123;print (<span class="subst">$3</span>&gt;100 ? &quot;yes&quot;:&quot;no&quot;)&#125;&#x27;</span>  /etc/passwd </span><br><span class="line">awk -F: <span class="string">&#x27;&#123;print (<span class="subst">$3</span>&gt;100 ? <span class="subst">$3</span>&quot;:\tyes&quot;:<span class="subst">$3</span>&quot;:\tno&quot;)&#125;&#x27;</span>  /etc/passwd</span><br></pre></td></tr></table></figure></li>
-<li><p>while语句</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">awk -F: <span class="string">&#x27;BEGIN&#123;i=1&#125; &#123;while(i&lt;NF) print NF,<span class="subst">$i</span>,i++&#125;&#x27;</span> /etc/passwd </span><br><span class="line"><span class="number">7</span> root <span class="number">1</span></span><br><span class="line"><span class="number">7</span> x <span class="number">2</span></span><br><span class="line"><span class="number">7</span> <span class="number">0</span> <span class="number">3</span></span><br><span class="line"><span class="number">7</span> <span class="number">0</span> <span class="number">4</span></span><br><span class="line"><span class="number">7</span> root <span class="number">5</span></span><br><span class="line"><span class="number">7</span> /root <span class="number">6</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>数组</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">netstat <span class="operator">-</span>anp<span class="operator">|</span>awk &#x27;<span class="type">NR</span>!<span class="operator">=</span><span class="number">1</span>&#123;a[<span class="variable">$6</span>]<span class="operator">++</span>&#125; <span class="type">END</span>&#123;<span class="keyword">for</span> (i <span class="keyword">in</span> a) print i,<span class="string">&quot;<span class="subst">\t</span>&quot;</span>,a[i]&#125;&#x27;</span><br><span class="line">netstat <span class="operator">-</span>anp<span class="operator">|</span>awk &#x27;<span class="type">NR</span>!<span class="operator">=</span><span class="number">1</span>&#123;a[<span class="variable">$6</span>]<span class="operator">++</span>&#125; <span class="type">END</span>&#123;<span class="keyword">for</span> (i <span class="keyword">in</span> a) printf <span class="string">&quot;%-20s %-10s %-5s <span class="subst">\n</span>&quot;</span>, i,<span class="string">&quot;<span class="subst">\t</span>&quot;</span>,a[i]&#125;&#x27;</span><br><span class="line"><span class="number">9523</span>                               <span class="number">1</span>     </span><br><span class="line"><span class="number">9929</span>                               <span class="number">1</span>     </span><br><span class="line"><span class="type">LISTEN</span>                            <span class="number">6</span>     </span><br><span class="line"><span class="number">7903</span>                               <span class="number">1</span>     </span><br><span class="line"><span class="number">3038</span><span class="operator">/</span>cupsd                   <span class="number">1</span>     </span><br><span class="line"><span class="number">7913</span>                               <span class="number">1</span>     </span><br><span class="line"><span class="number">10837</span>                             <span class="number">1</span>     </span><br><span class="line"><span class="number">9833</span>                               <span class="number">1</span>     </span><br></pre></td></tr></table></figure></li>
-<li><p>特殊要点</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$0</span>           表示整个当前行</span><br><span class="line"><span class="variable">$1</span>           每行第一个字段</span><br><span class="line">NF          字段数量变量</span><br><span class="line">NR          每行的记录号，多文件记录递增</span><br><span class="line">FNR         与NR类似，不过多文件记录不递增，每个文件都从1开始</span><br><span class="line">\t          制表符</span><br><span class="line">\n          换行符</span><br><span class="line">FS          BEGIN时定义分隔符</span><br><span class="line">RS          输入的记录分隔符， 默认为换行符(即文本是按一行一行输入)</span><br><span class="line">~            匹配，与==相比不是精确比较</span><br><span class="line">!~           不匹配，不精确比较</span><br><span class="line">==           等于，必须全部相等，精确比较</span><br><span class="line">!=           不等于，精确比较</span><br><span class="line">&amp;&amp;　         逻辑与</span><br><span class="line">||              逻辑或</span><br><span class="line">+              匹配时表示1个或1个以上</span><br><span class="line">/[0-9][0-9]+/   两个或两个以上数字</span><br><span class="line">/[0-9][0-9]*/    一个或一个以上数字</span><br><span class="line">FILENAME 文件名</span><br><span class="line">OFS      输出字段分隔符， 默认也是空格，可以改为制表符等</span><br><span class="line">ORS        输出的记录分隔符，默认为换行符,即处理结果也是一行一行输出到屏幕</span><br><span class="line">-F<span class="string">&#x27;[:#/]&#x27;</span>   定义三个分隔符</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cae3cccd2ee6" title="写的好文章">引用</a></p>
-
-          
+          命令分布
+格式
+123456789awk -F|-f|-v &#x27;BEGIN&#123; &#125; / / &#123;comand1;comand2&#125; END&#123; &#125;&#x27; file-F 定义列分隔符-f 指定调用脚本-v 定义变量&#x27; &#x2
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/10/09/awk/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1185,9 +980,16 @@
       
         
           
-            <p>hello word</p>
+          hello word
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/10/09/first-hello-word/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1305,21 +1107,22 @@
       
         
           
-            <h4 id="构想"><a href="#构想" class="headerlink" title="构想"></a>构想</h4><ul>
-<li><input disabled="" type="checkbox"> <del>firewalld实现黑白名单</del></li>
-<li><input checked="" disabled="" type="checkbox"> 从防火墙读取日志文件剔除白名单ip,再加脚本实现增删改查</li>
-</ul>
-<ol>
-<li>日志选定次数出现多的ip，判断不再白名单就加到黑名单</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">log_path=/usr/local/nginx/logs</span><br><span class="line">date=`date -d &quot;1 min ago&quot; +%Y%m%d-%H:%M:%S`</span><br><span class="line">nginxpid=`cat $&#123;log_path&#125;/nginx.pid`</span><br><span class="line">bmd=&#x27;39.96.88.49|47.94.44.148&#x27;</span><br><span class="line">cd $&#123;log_path&#125;</span><br><span class="line">array=($(cat access.log |grep -Ev $bmd| awk &#x27;&#123;print $1&#125;&#x27;|sort|uniq -c | sort -rn | awk &#x27;&#123;if($1&gt;1500) print $2&#125;&#x27;))</span><br><span class="line">wait</span><br><span class="line">for each in $&#123;array[@]&#125;</span><br><span class="line">do</span><br><span class="line">echo $each</span><br><span class="line">firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$each&quot; reject&quot;;</span><br><span class="line">done</span><br><span class="line">firewall-cmd --reload;</span><br><span class="line"></span><br><span class="line">cd $&#123;log_path&#125;</span><br><span class="line">array1=($(cat soso.access.log |grep -Ev $bmd| awk &#x27;&#123;print $1&#125;&#x27;|sort|uniq -c | sort -rn | awk &#x27;&#123;if($1&gt;1000) print $2&#125;&#x27;))</span><br><span class="line">wait</span><br><span class="line">for each in $&#123;array1[@]&#125;</span><br><span class="line">do</span><br><span class="line">echo $each</span><br><span class="line">firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$each&quot; reject&quot;;</span><br><span class="line">done</span><br><span class="line">firewall-cmd --reload;</span><br></pre></td></tr></table></figure>
+          构想
+ firewalld实现黑白名单
+ 从防火墙读取日志文件剔除白名单ip,再加脚本实现增删改查
 
-<ol start="2">
-<li><p>增加sed修改文件，实现增减黑白名单</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">source /xshell/nginx_cutaccesslog.sh</span><br><span class="line">echo -e &quot;输入动作:移除黑名单(remove bl);\n或输入:添加黑名单(add bl);\n或输入:添加白名单(add wl)\n或输入:移除白&gt;名单(remove wl)&quot;</span><br><span class="line">read xtext</span><br><span class="line">echo -e &quot;输入操作ip:&quot;</span><br><span class="line">read xip</span><br><span class="line">if [ &quot;$xtext&quot; = &#x27;remove bl&#x27; ]</span><br><span class="line">    then</span><br><span class="line">        firewall-cmd --permanent --remove-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$xip&quot; reject&quot; &amp;&amp; firewall-cmd --reload</span><br><span class="line">    elif [ &quot;$xtext&quot; = &#x27;add bl&#x27; ]</span><br><span class="line">        then</span><br><span class="line">        firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$xip&quot; reject&quot;  &amp;&amp; firewall-cmd --reload</span><br><span class="line">    elif [ &quot;$xtext&quot; = &#x27;add wl&#x27; ]</span><br><span class="line">        then</span><br><span class="line">        grep $&#123;xip&#125; /woshibenji/test-nginx &amp;&amp; echo &quot;$&#123;xip&#125;已在白名单&quot; || sed -i &quot;/bmd=/ s/$&#123;bmd&#125;/$&#123;bmd&#125;|$&#123;xip&#125;/&quot; /xshell/nginx_cutaccesslog.sh</span><br><span class="line">    elif [ &quot;$xtext&quot; = &#x27;remove wl&#x27; ]</span><br><span class="line">        then</span><br><span class="line">        sed -i &quot;/bmd=/ s/|\?$&#123;xip&#125;//g&quot; /xshell/nginx_cutaccesslog.sh</span><br><span class="line">    else</span><br><span class="line">       echo -e &quot;是否读取移除黑名单文件(yes/no)\nPS:适用操作批量ip&quot;</span><br><span class="line">    read xif</span><br><span class="line">   if [ $xif = &#x27;yes&#x27; ]</span><br><span class="line">       then</span><br><span class="line">           for line in `cat /opt/firewall.allow`</span><br><span class="line">           do</span><br><span class="line">               firewall-cmd --permanent --remove-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;$line&quot; reject&quot; &amp;&amp; firewall-cmd --reload</span><br><span class="line">           done</span><br><span class="line">   fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></li>
-</ol>
 
-          
+日志选定次数出现多的ip，判断不再白名单就加到黑名单
+
+1234567891011121314151617181920212223log_path=/usr/local/nginx/logsdat
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/10/09/%E4%B8%89%E5%89%91%E5%AE%A2-%E4%BF%AE%E6%94%B9firewall%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1399,7 +1202,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
