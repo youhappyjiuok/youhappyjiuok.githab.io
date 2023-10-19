@@ -6,4 +6,5 @@ http://example.com/2021/10/09/%E5%85%A5%E9%97%A8%E5%AE%9E%E9%AA%8C-%E5%BC%B9%E6%
 http://example.com/2021/10/09/sed/
 http://example.com/2021/10/09/awk/
 http://example.com/
-http://example.com/tags/%E7%A1%AC%E4%BB%B6/
+http://example.com/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA/
+http://example.com/categories/%E7%A1%AC%E4%BB%B6/
