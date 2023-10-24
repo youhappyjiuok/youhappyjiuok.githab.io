@@ -87,7 +87,7 @@
 <meta property="og:description" content="学了理论">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-19T07:07:26.000Z">
-<meta property="article:modified_time" content="2023-10-19T07:15:51.746Z">
+<meta property="article:modified_time" content="2023-10-24T08:06:46.661Z">
 <meta property="article:author" content="WaHaHa">
 <meta property="article:tag" content="软考信息安全">
 <meta name="twitter:card" content="summary">
@@ -372,21 +372,18 @@
 <li><p>iptables 规则</p>
 </li>
 <li><p>android系统文件配置</p>
-<ol>
-<li>权限组</li>
-<li>手机被攻击手段及攻击对应组件</li>
-<li>系统端存储</li>
-</ol>
+<pre><code>  1. 权限组
+  2. 手机被攻击手段及攻击对应组件
+  3. 系统端存储
+</code></pre>
 </li>
 <li><p>存储</p>
-<ol>
-<li><p>DAS，直接存储但难扩容</p>
-</li>
-<li><p>NAS，支持即插即用，连接到网络，性能中等</p>
-</li>
-<li><p>SAN，专用交换机连接磁盘阵列与服务器，成本高，技术复杂，适用于数据量大，访问速度要求高的场合。</p>
-</li>
-</ol>
+<pre><code>  1. DAS，直接存储但难扩容
+
+  2. NAS，支持即插即用，连接到网络，性能中等
+
+  3. SAN，专用交换机连接磁盘阵列与服务器，成本高，技术复杂，适用于数据量大，访问速度要求高的场合。
+</code></pre>
 </li>
 <li><p>安全审计</p>
 <p>   记录 检查 审核</p>
@@ -430,13 +427,12 @@
            <td>MD5 SHA-1 SHA-2</td>
        </tr>
    </table>
-   1. 非对称密钥算法
 
-<pre><code>  SM2为椭圆曲线密钥
-
-  SM9标识密钥算法
-</code></pre>
-<ol start="2">
+<ol>
+<li><p>非对称密钥算法</p>
+<p>SM2为椭圆曲线密钥</p>
+<p>SM9标识密钥算法</p>
+</li>
 <li><p>对称密钥算法</p>
 <p>SM1为小数据量密钥长128位，分组密钥算法</p>
 <p>SM4为大数据量密钥长128位，分组密钥算法</p>
@@ -472,23 +468,26 @@
 <li><p>CMM产品成熟度5阶段</p>
 </li>
 </ol>
-<ol>
-<li><p>APP</p>
-<ol>
-<li>无关代码，混淆，反编译</li>
-</ol>
-</li>
-<li><p>隐私保护</p>
-<p>​    </p>
-</li>
-<li><p>换算关系</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">１Byte＝８ｂｉｔ＝６４位</span><br></pre></td></tr></table></figure></li>
-<li><p>智能卡-cos监控软件组成模块：通信，安全管理，应用管理，文件管理</p>
-</li>
-<li><p>非技术性安全漏洞：权限分配</p>
-</li>
-<li><p>2006密钥协商算法：ECDH</p>
-</li>
+<pre><code>1. APP
+
+   1. 无关代码，混淆，反编译
+
+2. 隐私保护
+
+3. 换算关系
+
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">１Byte＝８ｂｉｔ＝６４位</span><br></pre></td></tr></table></figure>
+
+4. 智能卡-cos监控软件组成模块：通信，安全管理，应用管理，文件管理
+
+5. 非技术性安全漏洞：权限分配
+
+6. 2006密钥协商算法：ECDH
+</code></pre>
+<ol start="20">
+<li><p>以太网交换机—物理层—数据链路层—网络层—传输层会话层—表示层应用层</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">第一代交换机代表为集线器</span><br><span class="line">---</span><br><span class="line">第二代交换机识别转发MAC地址</span><br><span class="line">---</span><br><span class="line">第三代交换机网络层</span><br><span class="line">---</span><br><span class="line">第四代交换机增加业务功能，防火墙，负载均衡，IPS</span><br><span class="line">---</span><br><span class="line">第五代交换机支持软件定义网络SDN，Qos强</span><br></pre></td></tr></table></figure></li>
+<li></li>
 </ol>
 <h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><ol>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43610673/article/details/128333516">过来人笔记1</a></li>

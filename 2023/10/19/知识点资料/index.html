@@ -87,7 +87,7 @@
 <meta property="og:description" content="错的知识点">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-19T07:07:26.000Z">
-<meta property="article:modified_time" content="2023-10-19T07:18:25.610Z">
+<meta property="article:modified_time" content="2023-10-24T08:06:28.759Z">
 <meta property="article:author" content="WaHaHa">
 <meta property="article:tag" content="软考信息安全">
 <meta name="twitter:card" content="summary">
@@ -394,11 +394,11 @@
 </li>
 <li><p>ipsec安全机制</p>
 <ol>
-<li>AH认证</li>
+<li>AH用户认证</li>
 <li>ESP加密</li>
 </ol>
 </li>
-<li><p>BLP用户正常访问权限要至少全覆盖文件所需权限</p>
+<li><p>BLP用户正常访问要至少全覆盖文件所需权限</p>
 </li>
 <li><p>身份认证</p>
 <ol>
@@ -515,6 +515,19 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">敏感性分析，确认风险对项目潜在影响</span><br><span class="line">应急储备，预留时间，资金，资源应对威胁</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
+<li><p>密码系统分类—转化密文—处理方法—密钥使用个数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">独立三个方面</span><br><span class="line">---</span><br><span class="line">替换密码和移位密码</span><br><span class="line">---</span><br><span class="line">分组密码(块密码)和序列密码(流密码)</span><br><span class="line">---</span><br><span class="line">对称密码和非对称密码</span><br></pre></td></tr></table></figure></li>
+<li><p>APT—三阶段—五步骤</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">隐匿自己，针对特定对象，长期，有计划和组织窃取数据</span><br><span class="line">---</span><br><span class="line">攻击前准备阶段，攻击入侵阶段，持续攻击阶段</span><br><span class="line">---</span><br><span class="line">1.情报收集：在实施攻击之前，攻击者会针对特定组织的网络系统和相关员工展开大量的信息搜 集。信息搜集方法多种多样，通常包括搜索引擎、爬网系统、网络隐蔽扫描、社会工程 学方法等方式。信息来源包括相关员工的微博、博客、社交网站、公司网站，甚至通过 某些渠道购买相关信息(如公司通讯录等)。</span><br><span class="line"></span><br><span class="line">2.防线突破：攻击者在完成情报收集和技术准备后，开始采用木马/恶意代码攻击特定员工的个 人电脑，攻击方法主要有z ①社会工程学方法，如电子邮件攻击，攻击者窃取与特定员 工有关系的人员(如领导、同事、朋友等〉电子邮箱，冒充发件人给该员工发送带有恶 意代码附件的邮件，一旦该员工打开向件，员工电脑便感染了恶意软件。②远程漏洞攻 击方法，如网站挂马攻击，攻击者在员工常访问的网站上放置木马，当员工再次访问该 网站时，个人电脑便受到网页代码攻击。由于这些恶意软件针对的是系统未知漏洞并被 特殊处理，因此现有的杀毒软件和防火墙均无法察觉，攻击者便能逐渐获取个人电脑权 限，最后直至控制个人电脑。</span><br><span class="line"></span><br><span class="line">3.通道建立：攻击者在突破防线并控制员工电脑后，在员工电脑与入侵服务器之间开始建立命令 控制通道。通常，命令控制通道采用 HTTPIHTTPS 等协议构建，以突破电脑系统防火墙 等安全设备。一旦攻击者完成通道建立，攻击者通过发送控制命令检查植入的恶意软件 是否遭受查杀，并在恶意软件被安全软件检测到前，对恶意软件进行版本升级，以降低 被发现的概率。</span><br><span class="line"></span><br><span class="line">4.横向渗透：入侵和控制员工个人电脑并不是攻击者的最终目的，攻击者会采用口令窃听、漏洞 攻击等多种渗透方法尝试进一步入侵组织内部更多的个人电脑和服务器，同时不断地提 升自己的权限，以求控制更多的电脑和服务器，直至获得核心电脑和服务器的控制权。 </span><br><span class="line"></span><br><span class="line">5. 信息收集及外传：攻击者常常长期潜伏，并不断实行网络内部横向渗透，通过端口扫描等方式获取服 务器或设备上有价值的信息，针对个人电脑通过列表命令等方式获取文档列表信息等。 攻击者会将内部某个服务器作为资料暂存的服务器，然后通过整理、压缩、加密、打包 的方式，利用建立的隐蔽通信通道将信息进行外传。在获取这些信息后，攻击者会对这 些信息数据进行分析识剔，并做出最终的判断，甚至实施网络攻击破坏。 </span><br></pre></td></tr></table></figure></li>
+<li><p>网络威胁—渗入威胁—植入威胁</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">威胁包括两类，渗入威胁，植入威胁</span><br><span class="line">---</span><br><span class="line">假冒，旁路控制，侵权侵犯</span><br><span class="line">---</span><br><span class="line">特洛伊木马，陷门</span><br></pre></td></tr></table></figure></li>
+<li><p>权限控制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">角色分配，根据用户完成墨香任务需要的权限</span><br></pre></td></tr></table></figure></li>
+<li><p>地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">私有地址：172.16.0.0-172.31.255.255</span><br><span class="line">DHCP失灵，自动分配地址：169.254.0.0-169.254.255.255</span><br></pre></td></tr></table></figure></li>
+<li><p>工具包—网络嗅探—数据采集</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">nmap 扫服务器</span><br><span class="line">---</span><br><span class="line">libpcap 数据包捕获</span><br><span class="line">wireshark 扫网络包</span><br></pre></td></tr></table></figure></li>
+<li></li>
 </ol>
 <h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><ol>
 <li><a target="_blank" rel="noopener" href="https://www.cnitpm.com/exam/chapter6.html">信管网</a></li>
@@ -523,6 +536,7 @@
 <li><a target="_blank" rel="noopener" href="https://juejin.cn/s/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83%E8%AE%A1%E7%AE%97">数论-目录</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42915431/article/details/106506899" title="介绍">国产算法</a></li>
 <li><a target="_blank" rel="noopener" href="https://websec.readthedocs.io/zh/latest/misc/apt.html" title="网络安全手段">APT</a></li>
+<li><a target="_blank" rel="noopener" href="https://ebook.qicoder.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88/notes/201705%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E4%B8%8B%E5%8D%88%E7%9C%9F%E9%A2%98.html">历年真题解析</a></li>
 </ol>
 
       
